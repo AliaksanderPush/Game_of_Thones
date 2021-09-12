@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 
 import ItemList from '../ItemList/ItemList';
-import ItemDetails from '../CharsDetails/ItemDetails';
+import ItemDetails from '../ItemDetails/ItemDetails';
 import Error from '../UI/Error/Error';
 import GotService from '../../Service/GotService';
 import RowBlock from '../RowBlock/RowBlock';
-import Field from '../CharsDetails/Field/Field';
+import Field from '../Field/Field';
 
  
 
@@ -47,7 +47,7 @@ export default class CharacterPage extends Component {
          />
       )
      
-      const charsDetails = (
+      const itemDetails = (
           <ItemDetails
             itemId = {selectedChar}
             getData = {this.gotService.getCharacters}
@@ -60,7 +60,7 @@ export default class CharacterPage extends Component {
       )
 
       return(
-        <RowBlock  left = {itemList} rigth = {ItemDetails}/>
+        <RowBlock  left = {itemList} rigth = {itemDetails}/>
       );
    }
 }
