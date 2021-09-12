@@ -46,7 +46,13 @@ export default class RandomChar extends Component {
         const {char, loading, errorMessage} = this.state;
         const load = loading? <Loader/>: null;
         const err = errorMessage? <Error/>:null;
-        const content = !(loading || errorMessage)? <View char = {char} />:null;
+        const content = !(loading || errorMessage)
+        ? <View 
+        char = {char}
+        showDataAvailable = {this.props.showDataAvailable}
+        />
+        :null;
+
           return (
               <div className="random-block rounded">
              {load}
@@ -58,27 +64,28 @@ export default class RandomChar extends Component {
     }
 }
 
-const View = ({char}) => {
+const View = ({char, showDataAvailable}) => {
     const {name, gender, born, died, culture} = char;
+    
     return(
      <>
       <h4>Random Character: {name}</h4>
         <ul className="list-group list-group-flush">
             <li className="list-group-item d-flex justify-content-between">
                 <span className="term">Gender </span>
-                <span>{gender.length === 0 ? 'no data available': gender}</span>
+                <span>{showDataAvailable(gender)}</span>
             </li>
             <li className="list-group-item d-flex justify-content-between">
                 <span className="term">Born </span>
-                <span>{born.length === 0 ? 'no data available': born}</span>
+                <span>{showDataAvailable(born)}</span>
             </li>
             <li className="list-group-item d-flex justify-content-between">
                 <span className="term">Died </span>
-                <span>{died.length === 0 ? 'no data available': died}</span>
+                <span>{showDataAvailable(died)}</span>
             </li>
             <li className="list-group-item d-flex justify-content-between">
                 <span className="term">Culture </span>
-                <span>{culture.length === 0 ? 'no data available': culture}</span>
+                <span>{showDataAvailable(culture)}</span>
             </li>
         </ul>
      </>

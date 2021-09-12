@@ -3,10 +3,10 @@ import {Col, Row, Container} from 'reactstrap';
 
 import Header from '../Header/Header';
 import RandomChar from '../RandomChar/RandomChar';
-import ItemList from '../ItemList/ItemList';
-import CharsDetails from '../CharsDetails/CharsDetails';
 import Button from '../UI/Button/Button';
 import GotService from '../../Service/GotService';
+import Error from '../UI/Error/Error';
+import CharacterPage from '../CharacterPage/CharacterPage';
 
 
 
@@ -14,22 +14,35 @@ export default class App extends React.Component {
 
     state = {
         show: false,
-        selectedChar: null
+        error: false
     }
-   
+   componentDidCatch() {
+       this.setState({
+           error: true
+       })
+   }
+
 
    togleHandleCharacter = () => {
       this.setState({show: !this.state.show})
   }
 
-    selectedHandleChar = id => {
-      this.setState({selectedChar: id})
-  }
+    showDataAvailable = data => {
+        if (data.length === 0 ) {
+            return "no data available"
+        } else {
+            return data
+        }
+    }
+   
  
   render() {
-
-    const {show, selectedChar} = this.state;
-    console.log(this.state.selectedChar)
+    const {show, error} = this.state;
+    const {showDataAvailable, togleHandleCharacter} = this;
+    if (error) {
+        return <Error/>
+    }
+    
     return (
         <> 
             <Container>
@@ -38,25 +51,20 @@ export default class App extends React.Component {
             <Container>
                 <Row>
                     <Col lg={{size: 5, offset: 0}}>
-                    {show ? <RandomChar/>: null}                 
-                        
+                    {show 
+                    ? <RandomChar
+                     showDataAvailable = {showDataAvailable}
+                    />
+                    : null
+                    }                 
+                      
                         <Button
-                        onClick = {this.togleHandleCharacter}
+                        onClick = {togleHandleCharacter}
                         >Togle random character</Button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md='6'>
-                        <ItemList
-                        selectedHandleChar = {this.selectedHandleChar}
-                         />
-                    </Col>
-                    <Col md='6'>
-                        <CharsDetails
-                        charId = {selectedChar}
-                         />
-                    </Col>
-                </Row>
+                <CharacterPage      
+                />
             </Container>
         </>
     );

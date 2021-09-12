@@ -1,37 +1,38 @@
 import React, {Component} from 'react';
 import './ItemList.css';
 
-import GotService from '../../Service/GotService';
+
 import Loader from '../UI/Loader/Loader';
 
 
 export default class ItemList extends Component {
-gotService = new GotService();
-
 
  state = {
-     charList: null
+     itemList: null
  }
-  
-    
+   
    componentDidMount() {
      this.updateCharacters();  
    }
 
     updateCharacters =() => {
-         this.gotService.getAllCharacters()
-          .then(charList => this.setState({charList}))
+        const {getData} = this.props;
+
+             getData()
+          .then(itemList => this.setState({itemList}))
     }
 
     renderCharacters(arr) {
 
-          return arr.map((item,index) => {
+          return arr.map(item => {
+              const {id} = item;
+              const label = this.props.renderItem(item);
             return(
-                <li key = {item.id} 
+                <li key = {id} 
                     className="list-group-item"
-                    onClick = {() => this.props.selectedHandleChar(item.id)}
+                    onClick = {() => this.props.selectedHandleItem(id)}
                     >
-                    {item.name}
+                    {label}
                     
                 </li>
             );
@@ -40,13 +41,13 @@ gotService = new GotService();
      
 
     render() {
-     const {charList} = this.state;
-      if (!charList) {
+     const {itemList} = this.state;
+      if (!itemList) {
           return <Loader/>
       }
 
      
-     const characters = this.renderCharacters(charList);
+     const characters = this.renderCharacters(itemList);
         return (
             <ul className="item-list list-group">
              {characters} 
