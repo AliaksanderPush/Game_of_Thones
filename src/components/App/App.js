@@ -7,6 +7,8 @@ import Button from '../UI/Button/Button';
 import GotService from '../../Service/GotService';
 import Error from '../UI/Error/Error';
 import CharacterPage from '../CharacterPage/CharacterPage';
+import HousesPage from '../HousesPage/HousesPage';
+import BooksPage from '../BooksPage/BooksPage';
 
 
 
@@ -63,8 +65,10 @@ export default class App extends React.Component {
                         >Togle random character</Button>
                     </Col>
                 </Row>
-                <CharacterPage      
-                />
+                <CharacterPage/>
+                <HousesPage/>
+                <BooksPage/>     
+                
             </Container>
         </>
     );
