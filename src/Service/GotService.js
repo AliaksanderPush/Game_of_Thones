@@ -72,7 +72,7 @@ export default class GotService {
          _transformBooks(book) {
             return {    
                name:book.name,
-               numberOfPages: book.number-jfPages,
+               numberOfPages: book.numberOfPages,
                publiser: book.born,
                released: book.died,
                id: book.url.split('/').pop()
