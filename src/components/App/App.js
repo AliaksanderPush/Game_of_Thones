@@ -1,14 +1,16 @@
 import React  from 'react';
 import {Col, Row, Container} from 'reactstrap';
+import {Route, Switch} from 'react-router-dom';
 
 import Header from '../Header/Header';
 import RandomChar from '../RandomChar/RandomChar';
 import Button from '../UI/Button/Button';
-import GotService from '../../Service/GotService';
 import Error from '../UI/Error/Error';
 import CharacterPage from '../CharacterPage/CharacterPage';
 import HousesPage from '../HousesPage/HousesPage';
 import BooksPage from '../BooksPage/BooksPage';
+import BooksItem from '../BooksPage/BooksItem/BooksItem';
+
 
 
 
@@ -65,10 +67,21 @@ export default class App extends React.Component {
                         >Togle random character</Button>
                     </Col>
                 </Row>
-                <CharacterPage/>
-                <HousesPage/>
-                <BooksPage/>     
-                
+                               
+                <Switch>
+                    <Route path="/" exact render = {() => <h1>Home Page</h1>}/>
+                    <Route path="/characters/" component = {CharacterPage}/>
+                    <Route path="/houses/" exact component = {HousesPage}/>
+                    <Route path="/books/" exact component = {BooksPage}/>
+                    <Route path="/books/:id" render = {
+                        ({match}) => {
+                            const {id} = match.params;
+                         return   <BooksItem bookId = {id} />
+                        }
+                    }/>
+                    <Route render = {() => <h1 style={{color:'red'}}>404 Not found</h1>}/>
+                </Switch>
+              
             </Container>
         </>
     );

@@ -38,10 +38,10 @@ export default class ItemDetails extends Component {
 
 
     render() {
-      
-        if (!this.state.item) {
-            return <span className="select-error">Please select a character</span>
+          if (!this.state.item) {
+           return <span className="select-error">Please select a character</span>
         }
+    
          const {item} = this.state;
          const {children} = this.props;
          const {name} = item;

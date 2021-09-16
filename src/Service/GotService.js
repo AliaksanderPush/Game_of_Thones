@@ -62,10 +62,11 @@ export default class GotService {
          _transformHouses(house) {
             return {    
                name:house.name,
-               region: house.gender,
-               words: house.born,
-               titles: house.died,
-               overlord: house.culture, 
+               region: house.region,
+               words: house.words,
+               titles: house.titles,
+               overlord: house.overlord,
+               ancestralWeapons: house.ancestralWeapons, 
                id: house.url.split('/').pop()
             }
          }
@@ -73,8 +74,8 @@ export default class GotService {
             return {    
                name:book.name,
                numberOfPages: book.numberOfPages,
-               publiser: book.born,
-               released: book.died,
+               publisher: book.publisher,
+               released: book.released,
                id: book.url.split('/').pop()
             } 
          }

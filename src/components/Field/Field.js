@@ -2,9 +2,9 @@ import React from 'react';
 
 
 const Field = ({item, field, label}) => {
-  
+  console.log(item);
 const    showDataAvailable = data => {
-            if (data.length === 0 ) {
+            if (!data ) {
                   return "no data available"
             } else {
                   return data
@@ -14,7 +14,7 @@ const    showDataAvailable = data => {
    return (
       <li className="list-group-item d-flex justify-content-between">
          <span className="term">{label}</span>
-         <span>{showDataAvailable(item[field])}</span>
+         <span>{item[field]}</span>
       </li>
    );
 }
