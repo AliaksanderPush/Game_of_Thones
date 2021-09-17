@@ -61,17 +61,16 @@ export default class App extends React.Component {
                     />
                     : null
                     }                 
-                      
-                        <Button
-                        onClick = {togleHandleCharacter}
-                        >Togle random character</Button>
-                    </Col>
+                              
+                 </Col>
                 </Row>
-                               
+                   <Button
+                        onClick = {togleHandleCharacter}
+                        >Togle random character</Button>             
                 <Switch>
                     <Route path="/" exact render = {() => <h1>Home Page</h1>}/>
                     <Route path="/characters/" component = {CharacterPage}/>
-                    <Route path="/houses/" exact component = {HousesPage}/>
+                    <Route path="/houses/"  component = {HousesPage}/>
                     <Route path="/books/" exact component = {BooksPage}/>
                     <Route path="/books/:id" render = {
                         ({match}) => {

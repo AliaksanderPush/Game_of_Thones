@@ -76,6 +76,8 @@ export default class GotService {
                numberOfPages: book.numberOfPages,
                publisher: book.publisher,
                released: book.released,
+               authors: book.authors,
+               country: book.country,
                id: book.url.split('/').pop()
             } 
          }

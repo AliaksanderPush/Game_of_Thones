@@ -30,7 +30,7 @@ export default class HousesPage extends Component {
 
        
  render() {
-   const {selectedHouses, error} = this.state;
+   const {error} = this.state;
    const {selectedHandleItem} = this;
       if (error) {
         return <Error/>
